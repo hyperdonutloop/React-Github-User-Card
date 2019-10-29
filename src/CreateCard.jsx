@@ -4,14 +4,11 @@ function CreateCard (props) {
 
   return (
     <div className="user-card">
-      <img
-      src="https://avatars0.githubusercontent.com/u/54790855?v=4"
-      alt="profile-pic"
-      width = "100"
-      />
-      <h2>{props.name}</h2>
-      <p>{props.bio}</p>
-      <p>{props.location}</p>
+      <img src={props.user.avatar_url} width=
+      "100"></img>
+      <h2>{props.user.name}</h2>
+      <p>{props.user.bio}</p>
+      <p>{props.user.location}</p>
 
     </div>
   )

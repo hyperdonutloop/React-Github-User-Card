@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import CreateCard from "./CreateCard";
+import FollowersInfo from "./FollowersInfo";
 
 class UserCard extends React.Component {
 
@@ -15,7 +16,7 @@ class UserCard extends React.Component {
     axios
     .get('https://api.github.com/users/hyperdonutloop')
     .then(response => {
-      console.log(response);
+      // console.log(response);
       this.setState({
         users: [response.data]
       })
@@ -24,9 +25,9 @@ class UserCard extends React.Component {
       axios
       .get('https://api.github.com/users/hyperdonutloop/followers')
       .then(response => {
-        console.log(response.data);
+        // console.log(response);
         this.setState({
-          followers: [response.data]
+          followers: response.data
         })
       })
     })
@@ -46,12 +47,20 @@ class UserCard extends React.Component {
     return (
       <div className="user-card">
         <h1>Hyper Donut Loop</h1>
-        {this.state.users.map(users => (<CreateCard
-        img={users.avatar_url}
-        name={users.name}
-        bio={users.bio}
-        location={users.location}
-        />
+        {this.state.users.map(element => (
+          
+          <CreateCard
+          key={element.id}
+          user={element}
+          />
+        ))}
+        <h2>Followers</h2>
+        {this.state.followers.map(followers => (
+          
+          <FollowersInfo
+          key={followers.id}
+          name={followers.login}
+          />
         ))}
       </div>
     )
