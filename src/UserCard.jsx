@@ -1,19 +1,22 @@
 import React from "react";
 import axios from "axios";
+import CreateCard from "./CreateCard";
 
 class UserCard extends React.Component {
 
   state = {
     users: []
-  }
+  };
 
-  componentDidMount() {
+//fetching user data from GitHub API//
+
+  componentDidMount() {       
     axios
     .get('https://api.github.com/users/hyperdonutloop')
     .then(response => {
       console.log(response);
       this.setState({
-        users: response
+        users: [response.data]
       })
     })
     .catch(error => {
@@ -21,17 +24,24 @@ class UserCard extends React.Component {
     })
   }
 
+//line 17 -setting data to state 
+
   render() {
 
     return (
-      <div>This is My App</div>
+      <div className="user-card">
+        <h1>Hyper Donut Loop</h1>
+        {this.state.users.map(users => (<CreateCard
+        img={users.avatar_url}
+        name={users.name}
+        bio={users.bio}
+        location={users.location}
+        />
+        ))}
+      </div>
     )
 
-
-
   }
-
-
 
 }
 
