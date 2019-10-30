@@ -5,7 +5,7 @@ const FWrapper = styled.div`
   p {
     color: #FFFFFF;
     font-size: .8rem;
-    border: 2px dashed white;
+    
     
   }
 `;
