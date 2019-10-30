@@ -2,6 +2,13 @@ import React from "react";
 import axios from "axios";
 import CreateCard from "./CreateCard";
 import FollowersInfo from "./FollowersInfo";
+import styled from "styled-components";
+
+const UserCardWrapper = styled.div`
+  .user-card h1 {
+    color: FFFFFF;
+  }
+`;
 
 class UserCard extends React.Component {
 
@@ -45,6 +52,7 @@ class UserCard extends React.Component {
   render() {
 
     return (
+      <UserCardWrapper>
       <div className="user-card">
         <h1>Hyper Donut Loop</h1>
         {this.state.users.map(element => (
@@ -54,7 +62,8 @@ class UserCard extends React.Component {
           user={element}
           />
         ))}
-        <h2>Followers</h2>
+        
+        <h3>Followers</h3>
         {this.state.followers.map(followers => (
           
           <FollowersInfo
@@ -63,6 +72,7 @@ class UserCard extends React.Component {
           />
         ))}
       </div>
+      </UserCardWrapper>
     )
 
   }
